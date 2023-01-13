@@ -7,9 +7,9 @@ This is going to be the initial planning for the development of both application
 - [ ] Structure
   - [ ] Backend
     - [X] upload_image function
-    - [ ] Wrong url
+    - [X] Wrong url
     - [ ] list_images function
-    - [ ] analyse_image function
+    - [X] analyse_image function
   - [ ] Frontend
     - [ ] HTML 
     - [ ] Javascript
