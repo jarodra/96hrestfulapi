@@ -1,15 +1,15 @@
 ### Development planning
 This is going to be the initial planning for the development of both applications.
 
-- [ ] Learn Flask
+- [X] Learn Flask
   - [x] Routing
-  - [ ] Uploading files
+  - [X] Uploading files
 - [ ] Structure
   - [ ] Backend
+    - [X] upload_image function
     - [ ] Wrong url
     - [ ] list_images function
     - [ ] analyse_image function
-    - [ ] upload_image function
   - [ ] Frontend
     - [ ] HTML 
     - [ ] Javascript
