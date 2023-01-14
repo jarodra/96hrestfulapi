@@ -13,7 +13,7 @@ This is going to be the initial planning for the development of both application
   - [ ] Frontend
     - [ ] HTML 
     - [X] Javascript
-    - [ ] CSS / Bootstrap
+    - [X] CSS / Bootstrap
   - [ ] Dockerizing
     - [ ] Docker
       - [ ] Frontend app
