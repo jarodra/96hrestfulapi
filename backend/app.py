@@ -4,10 +4,10 @@ from PIL import Image
 
 app = Flask(__name__)
 
-# Allowed uploaded files definitions
+# File definitions
 UPLOAD_FOLDER = './files'
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 def allowed_file(file_name):
@@ -24,12 +24,11 @@ def count_uploaded_files():
     return len(os.listdir(folder))
 
 def find_files(stem):
-    # Search for the saved files and return it if it exists, else false
+    # Search for the saved files and return it if it exists, else None
     folder = os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER)
     for file in os.listdir(folder):
         if file.rsplit('.', 1)[0] == str(stem):
             return file
-    return False
 
 def res_image(file_name):
     # Returns the height and width from a specified file
@@ -40,13 +39,18 @@ def res_image(file_name):
 ### Routing ###
 @app.route('/upload_image', methods=['POST'])
 def upload_file():
-    # Check if the file is empty
+    app.logger.debug('A value for debugging')
+    # Check if a file is selected
     if 'file' not in request.files:
         response = {'message': 'There\'s no file selected'} 
         return response, 400 
     file = request.files['file']
+    # Check if a file is sent
+    if not file:
+        response = {'message': 'There\'s no file sent'} 
+        return response, 400 
     # Check if there's a file, with correct extension
-    if not (file and allowed_file(file.filename)):
+    if not allowed_file(file.filename):
         response = {'message': 'Incorrect file extension'} 
         return response, 415
     # Read the file name, asign a name and save the file in the server

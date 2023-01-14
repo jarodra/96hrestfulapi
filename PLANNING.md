@@ -5,7 +5,7 @@ This is going to be the initial planning for the development of both application
   - [x] Routing
   - [X] Uploading files
 - [ ] Structure
-  - [ ] Backend
+  - [X] Backend
     - [X] upload_image function
     - [X] Wrong url
     - [X] list_images function
@@ -14,5 +14,10 @@ This is going to be the initial planning for the development of both application
     - [ ] HTML 
     - [ ] Javascript
     - [ ] CSS / Bootstrap
-  - [ ] Dockerizing the backend app
-  - [ ] Dockerizing the frontend app
+  - [ ] Dockerizing
+    - [ ] Docker
+      - [ ] Frontend app
+      - [X] Backend app
+    - [ ] Docker Compose
+      - [ ] Frontend app
+      - [ ] Backend app
