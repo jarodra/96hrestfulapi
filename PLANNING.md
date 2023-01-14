@@ -12,7 +12,7 @@ This is going to be the initial planning for the development of both application
     - [X] analyse_image function
   - [ ] Frontend
     - [ ] HTML 
-    - [ ] Javascript
+    - [X] Javascript
     - [ ] CSS / Bootstrap
   - [ ] Dockerizing
     - [ ] Docker

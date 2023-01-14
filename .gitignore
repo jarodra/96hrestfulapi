@@ -1,6 +1,9 @@
 # Image files introduced by the user
 files/
 
+# jquery
+jquery*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
