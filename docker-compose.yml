@@ -14,8 +14,8 @@ services:
             FLASK_DEBUG: True
     #frontend:
     #    build:
-    #        context: backend
-    #        dockerfile: Dockerfile_Backend
+    #        context: frontend
+    #        dockerfile: Dockerfile_Frontend
     #    ports:
     #        - "80:80"
     #    volumes:
