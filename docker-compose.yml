@@ -1,0 +1,22 @@
+# docker-compose.yaml
+version: '3'
+services:
+    backend:
+        image: nginx:latest
+        build:
+            context: backend
+            dockerfile: Dockerfile_Backend
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/backend
+        environment: 
+            FLASK_DEBUG: True
+    #frontend:
+    #    build:
+    #        context: backend
+    #        dockerfile: Dockerfile_Backend
+    #    ports:
+    #        - "80:80"
+    #    volumes:
+    #        - .:/frontend

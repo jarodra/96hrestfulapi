@@ -20,4 +20,4 @@ This is going to be the initial planning for the development of both application
       - [X] Backend app
     - [ ] Docker Compose
       - [ ] Frontend app
-      - [ ] Backend app
+      - [X] Backend app

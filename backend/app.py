@@ -39,7 +39,6 @@ def res_image(file_name):
 ### Routing ###
 @app.route('/upload_image', methods=['POST'])
 def upload_file():
-    app.logger.debug('A value for debugging')
     # Check if a file is selected
     if 'file' not in request.files:
         response = {'message': 'There\'s no file selected'} 
@@ -95,4 +94,4 @@ def not_found(e):
     return response, 413
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug = True, host='0.0.0.0', port=5000)
