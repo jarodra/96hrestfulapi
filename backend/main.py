@@ -8,7 +8,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = './files'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-# app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 def allowed_file(file_name):
     # Check if the extensions are in the allowed file extensions
@@ -37,29 +37,25 @@ def res_image(file_name):
     width, height = img.size
     return [width, height]  
 
-### Routing:
+### Routing ###
 @app.route('/upload_image', methods=['POST'])
 def upload_file():
-    if request.method == 'POST':
-        # Check if there's a file
-        if 'file' not in request.files:
-            response = {'message': 'There\'s no file selected'} 
-            return response, 400 
-        # If there's no file selected the browser submits an empty file without a filename
-        file = request.files['file']
-        # Check if there's a non empty file
-        if file.filename == '':
-            response = {'message': 'No selected filename'}
-            return response, 400 
-        # Check if there's a file, with correct extension
-        if file and allowed_file(file.filename):
-            stem = str(count_uploaded_files())
-            file_extension = get_file_extension(file.filename)
-            file.save(os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER, stem + '.' + file_extension))
-            response = {'message': stem + ' is the number of the file'} 
-            return response, 201
+    # Check if the file is empty
+    if 'file' not in request.files:
+        response = {'message': 'There\'s no file selected'} 
+        return response, 400 
+    file = request.files['file']
+    # Check if there's a file, with correct extension
+    if not (file and allowed_file(file.filename)):
         response = {'message': 'Incorrect file extension'} 
         return response, 415
+    # Read the file name, asign a name and save the file in the server
+    stem = str(count_uploaded_files())
+    file_extension = get_file_extension(file.filename)
+    file.save(os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER, stem + '.' + file_extension))
+    response = {'message': stem + ' is the number of the file'} 
+    return response, 201
+
 
 @app.route('/analyse_image/<int:id>', methods=['GET'])
 def get_image(id):
@@ -74,8 +70,9 @@ def get_image(id):
 
 @app.route('/list_images', methods=['GET'])
 def list_images():
-    response = {'message': 'success'}
-    return response, 200
+    folder = os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER)
+    images = [images.rsplit('.', 1)[0] for images in os.listdir(folder)]
+    return {'images':images, 'message' : 'success'}, 200
 
 # General error redirecting
 @app.errorhandler(404)
@@ -83,6 +80,15 @@ def not_found(e):
     response = 'Resource not found'
     return response, 404
 
+@app.errorhandler(405)
+def not_found(e):
+    response = 'Method Not Allowed'
+    return response, 405
+
+@app.errorhandler(413)
+def not_found(e):
+    response = 'The image was too large.'
+    return response, 413
 
 if __name__ == '__main__':
     app.run(debug=True)

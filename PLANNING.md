@@ -8,7 +8,7 @@ This is going to be the initial planning for the development of both application
   - [ ] Backend
     - [X] upload_image function
     - [X] Wrong url
-    - [ ] list_images function
+    - [X] list_images function
     - [X] analyse_image function
   - [ ] Frontend
     - [ ] HTML 
