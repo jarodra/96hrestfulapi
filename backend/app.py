@@ -1,17 +1,21 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, redirect
 from flask_cors import CORS
 from PIL import Image
 
-app = Flask(__name__)
-CORS(app)
-
 # File definitions
 UPLOAD_FOLDER = './files'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
+# app creation
+def create_app():
+    app = Flask(__name__)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
+    CORS(app)
+    return app
+
+app = create_app()
 
 def allowed_file(file_name):
     # Check if the extensions are in the allowed file extensions
