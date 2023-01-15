@@ -7,11 +7,12 @@ $(document).ready(() => {
   // Event listener for loading the image list
   $("#getList").click(() => {
     // AJAX Petition to load the list
+    $("#list").stop();
     $.ajax({
       url: listImagesURL,
       success: (result) => {
         if(result.images.length == 0){
-          $("#list").addClass("alert alert-danger");
+          $("#list").stop().addClass("alert alert-danger");
           $("#list").text("There's no files stored").fadeIn().delay(1500).fadeOut();
         } else {
           let listImages = `<table class="table table-striped" style="table-layout:fixed;">
