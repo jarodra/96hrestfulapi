@@ -69,44 +69,38 @@ $(document).ready(() => {
   });
 
   // Action to sending the file
-  $("#flash").removeClass().text("").fadeOut();
+  $("#flash").removeClass().text("").fadeOut(1);
 
   $("form").submit((e) => {
-      e.preventDefault();
-      $("#flash").removeClass().text("");
+    e.preventDefault();
+    $("#flash").stop().removeClass().text("").fadeOut(1).stop();
 
-      var form_data = new FormData($('#inputFile')[0]);
-      $.ajax({
-        type: 'POST',
-        url: uploadImage,
-        data: form_data,
-        contentType: false,
-        cache: false,
-        processData: false,
-        statusCode: {
-          201: (result) => {
-            $("#flash").addClass("alert alert-success");
-            $("#flash").text(result.message);
-            $("#flash").fadeIn().delay(1500).fadeOut();
-          }, 
-          400: () =>{
-            $("#flash").addClass("alert alert-danger");
-            $("#flash").text("There's no file selected");
-            $("#flash").fadeIn().delay(1500).fadeOut();
-           },
-          415: () =>{ 
-            $("#flash").addClass("alert alert-danger");
-            $("#flash").text("Only .jpg, .jpeg and .png extensions allowed");
-            $("#flash").fadeIn().delay(1500).fadeOut();
-          },
+    var form_data = new FormData($('#inputFile')[0]);
+    $.ajax({
+      type: 'POST',
+      url: uploadImage,
+      data: form_data,
+      contentType: false,
+      processData: false,
+      statusCode: {
+        201: (result) => {
+          $("#flash").addClass("alert alert-success");
+          $("#flash").text(result.message);
+          $("#flash").fadeIn().delay(1500).fadeOut();
+        }, 
+        400: () =>{
+          $("#flash").addClass("alert alert-danger");
+          $("#flash").text("There's no file selected");
         },
-          error: () => {
-            $("#flash").addClass("alert alert-danger");
-            $("#flash").text("There's an error. No response.");
-            $("#flash").fadeIn().delay(1500).fadeOut();
-          }
-
-        
+        415: () =>{ 
+          $("#flash").addClass("alert alert-danger");
+          $("#flash").text("Only .jpg, .jpeg and .png extensions allowed");
+        }
+      }, error: () => {
+          $("#flash").addClass("alert alert-danger");
+          $("#flash").text("There's an error. No response.");
+          $("#flash").fadeIn().delay(1500).fadeOut();
+        }
     });
   });
 });
