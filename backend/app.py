@@ -47,7 +47,7 @@ def res_image(file_name):
 ### Routing ###
 
 
-@app.route('/upload_image', methods=['POST'])
+@app.route('/upload_image', methods=['PUT'])
 def upload_file():
     # Check if a file is selected
     if 'file' not in request.files:
