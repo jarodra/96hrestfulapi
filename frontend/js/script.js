@@ -1,3 +1,4 @@
+const uploadImage = "http://127.0.0.1:5000/upload_image";
 const listImagesURL = "http://127.0.0.1:5000/list_images";
 const analyzeImage = "http://127.0.0.1:5000/analyse_image/";
 
@@ -54,6 +55,42 @@ $(document).ready(function () {
       error: () => {
         $("#list").html("There's an error"); // ERROR
       },
+    });
+  });
+
+  // Action to sending the file
+  $("#flash").removeClass().text("").fadeOut();
+
+  $("form").submit((e) => {
+      e.preventDefault();
+      $("#flash").removeClass().text("");
+
+      var form_data = new FormData($('#inputFile')[0]);
+      $.ajax({
+        type: 'POST',
+        url: uploadImage,
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        statusCode: {
+          201: (result) => {
+            $("#flash").addClass("alert alert-success");
+            $("#flash").text(result.message);
+            $("#flash").fadeIn().delay(1500).fadeOut();
+          }, 
+          400: () =>{
+            $("#flash").addClass("alert alert-danger");
+            $("#flash").text("There's no file selected");
+            $("#flash").fadeIn().delay(1500).fadeOut();
+           },
+          415: () =>{ 
+            $("#flash").addClass("alert alert-danger");
+            $("#flash").text("Only .jpg, .jpeg and .png extensions allowed");
+            $("#flash").fadeIn().delay(1500).fadeOut();
+          },
+
+        }
     });
   });
 });

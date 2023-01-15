@@ -47,7 +47,7 @@ def res_image(file_name):
 ### Routing ###
 
 
-@app.route('/upload_image', methods=['PUT'])
+@app.route('/upload_image', methods=['POST']) # Test fron
 def upload_file():
     # Check if a file is selected
     if 'file' not in request.files:
@@ -67,7 +67,7 @@ def upload_file():
     file_extension = get_file_extension(file.filename)
     file.save(os.path.join(os.path.dirname(__file__),
               UPLOAD_FOLDER, stem + '.' + file_extension))
-    response = {'message': stem + ' is the number of the file'}
+    response = {'message': f"File: {stem} was added"}
     return response, 201
 
 

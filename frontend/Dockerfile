@@ -1,5 +1,5 @@
 # Dockerfile frontend
-FROM nginx
+FROM ubuntu
 RUN apt-get -y update && apt-get -y install nginx
 VOLUME /usr/share/nginx/html
 VOLUME /etc/nginx
