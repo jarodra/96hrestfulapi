@@ -1,6 +1,7 @@
-const uploadImage = "http://127.0.0.1:5000/upload_image";
-const listImagesURL = "http://127.0.0.1:5000/list_images";
-const analyzeImage = "http://127.0.0.1:5000/analyse_image/";
+const PORT = 5000;
+const uploadImage = `http://127.0.0.1:${PORT}/upload_image`;
+const listImagesURL = `http://127.0.0.1:${PORT}/list_images`;
+const analyseImage = `http://127.0.0.1:${PORT}/analyse_image/`;
 
 // JQuery
 $(document).ready(() => {
@@ -28,7 +29,7 @@ $(document).ready(() => {
           listImages += `<tr>
                             <th scope="row">${image}</th>
                             <td>
-                                <a class="links btn btn-primary"" href="http://127.0.0.1:5000/analyse_image/${image}">ShowProperties: ${image}</a>
+                                <a class="links btn btn-primary"" href="${analyseImage}${image}">ShowProperties: ${image}</a>
                             </td>
                             <td>
                                 <div id="collapse${image}">
@@ -48,7 +49,7 @@ $(document).ready(() => {
           target = `#collapse${imgNumber}`;
           $(target).text("").fadeOut(1);
           $.ajax({
-            url: analyzeImage + imgNumber,
+            url: analyseImage + imgNumber,
             success: (result) => {
               let res = `Width: ${result.width}, Height: ${result.height}`;
               console.log(res);
