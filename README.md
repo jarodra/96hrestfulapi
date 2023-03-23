@@ -42,6 +42,7 @@ _Access the user documentation frontend in the address `127.0.0.1:8080`_
 * [nginx](https://www.nginx.com/)
 * [Visual Studio Code](https://code.visualstudio.com)
 * [Postman](https://www.postman.com)
+* [Jenkins](https://www.jenkins.io/)
 
 ## Development planning
 
