@@ -1,9 +1,5 @@
 pipeline {
     agent any
-	environment {
-        def img = ("${env.JOB_NAME}:${env.BUILD_ID}").toLowerCase()
-    }
-
     stages {
 		stage('Checkout') {
 			steps {
