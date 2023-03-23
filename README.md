@@ -68,5 +68,4 @@ This is going to be the initial planning for the development of both application
       - [X] Simultaneusly
 
 ## Author ✒️
-
 - [**Javier Rodrigo**](https://github.com/durgrim)
