@@ -44,6 +44,7 @@ _Access the user documentation frontend in the address `127.0.0.1:8080`_
 * [Postman](https://www.postman.com)
 
 ## Development planning
+
 This is going to be the initial planning for the development of both applications.
 
 - [X] Preparation
@@ -68,4 +69,5 @@ This is going to be the initial planning for the development of both application
       - [X] Simultaneusly
 
 ## Author ✒️
+
 - [**Javier Rodrigo**](https://github.com/durgrim)
